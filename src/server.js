@@ -7,7 +7,10 @@ const http = require("http");
 // start express server
 const app = express();
 const server = http.createServer(app);
-const io = socket(server);
+const io = socket(server, {
+    origins: "https://bingodafamilia.herokuapp.com",
+    cors: true,
+});
 app.set("io", io);
 
 // middleware
