@@ -1,6 +1,6 @@
 // get array of numbers from 1 to 60 and shuffle it
 const numbers = [...Array(60).keys()].map((i) => i + 1);
-var socket = io("https://bingodafamilia.herokuapp.com/");
+var socket = io("https://bingodafamilia.herokuapp.com:3000");
 
 socket.on("sorteados", function (data) {
     $("#numero" + data)
