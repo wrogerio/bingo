@@ -28,21 +28,21 @@ app.use(router);
 const sorteados = [];
 
 // socket connection
-// io.on("connection", (socket) => {
-//     console.log("Socket Connected. Socket ID: ", socket.id);
+io.on("connection", (socket) => {
+    console.log("Socket Connected. Socket ID: ", socket.id);
 
-//     socket.on("sorteado", (data) => {
-//         sorteados.push(data.numero);
-//         console.log(sorteados);
-//         socket.broadcast.emit("sorteados", sorteados[sorteados.length - 1]);
-//     });
+    socket.on("sorteado", (data) => {
+        sorteados.push(data.numero);
+        console.log(sorteados);
+        socket.broadcast.emit("sorteados", sorteados[sorteados.length - 1]);
+    });
 
-//     socket.on("resetar", () => {
-//         sorteados.length = 0;
-//         console.log(sorteados);
-//         socket.broadcast.emit("resetados", sorteados);
-//     });
-// });
+    socket.on("resetar", () => {
+        sorteados.length = 0;
+        console.log(sorteados);
+        socket.broadcast.emit("resetados", sorteados);
+    });
+});
 
 // start server
 server.listen(3000, () => {
