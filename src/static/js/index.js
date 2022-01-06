@@ -38,7 +38,7 @@ btIniciar.addEventListener("click", () => {
         } else {
             btNext.classList.add("hidden");
         }
-    }, 1000);
+    }, 3000);
 });
 
 btResetar.addEventListener("click", () => {
