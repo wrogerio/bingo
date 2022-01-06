@@ -1,7 +1,7 @@
 const btIniciar = document.querySelector("#btIniciar");
 const btNext = document.querySelector("#btNext");
 const btResetar = document.querySelector("#btResetar");
-var socket = io("http://localhost:3000");
+var socket = io("https://bingodafamilia.herokuapp.com/");
 let sorteados = [];
 let atual = -1;
 let andamento;
