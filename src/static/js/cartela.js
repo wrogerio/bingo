@@ -3,9 +3,11 @@ const numbers = [...Array(60).keys()].map((i) => i + 1);
 var socket = io("https://bingodafamilia.herokuapp.com");
 
 socket.on("sorteados", function (data) {
-    $("#numero" + data)
-        .removeClass("alert-primary")
-        .addClass("alert-danger");
+    setTimeout(() => {
+        $("#numero" + data)
+            .removeClass("alert-primary")
+            .addClass("alert-danger");
+    }, 1500);
 });
 
 socket.on("resetados", function (data) {
