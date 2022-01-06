@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <%- include('partials/_header.ejs', {title: 'Ofertas - Login'}) %>
+    </head>
+    <body class="hide p-2">
+        <div class="container container-main">
+            <div class="row">
+                <div class="col alert alert-primary text-center">
+                    <h2><a href="/">Bingo da Família</a></h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div id="resultadoCartela"></div>
+                </div>
+            </div>
+        </div>
+
+        <%- include('partials/_scripts.ejs') %>
+        <script src="/js/shared.js"></script>
+        <script src="/js/cartela.js"></script>
+    </body>
+</html>
