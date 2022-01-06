@@ -7,12 +7,7 @@ const http = require("http");
 // start express server
 const app = express();
 const server = http.createServer(app);
-const io = socket(server, {
-    cors: {
-        origin: "http://localhost:3000",
-        methods: ["GET", "POST"],
-    },
-});
+const io = socket(server);
 app.set("io", io);
 
 // middleware
