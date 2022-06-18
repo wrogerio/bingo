@@ -8,8 +8,8 @@ const http = require("http");
 const app = express();
 const server = http.createServer(app);
 const io = socket(server, {
-    origins: "https://bingodafamilia.herokuapp.com",
-    cors: true,
+  origins: "https://bingodafamilia.herokuapp.com",
+  cors: true,
 });
 app.set("io", io);
 
@@ -32,24 +32,24 @@ const sorteados = [];
 
 // socket connection
 io.on("connection", (socket) => {
-    console.log("Socket Connected. Socket ID: ", socket.id);
+  console.log("Socket Connected. Socket ID: ", socket.id);
 
-    socket.on("sorteado", (data) => {
-        sorteados.push(data.numero);
-        console.log(sorteados);
-        socket.broadcast.emit("sorteados", sorteados[sorteados.length - 1]);
-    });
+  socket.on("sorteado", (data) => {
+    sorteados.push(data.numero);
+    console.log(sorteados);
+    socket.broadcast.emit("sorteados", sorteados[sorteados.length - 1]);
+  });
 
-    socket.on("resetar", () => {
-        sorteados.length = 0;
-        console.log(sorteados);
-        socket.broadcast.emit("resetados", sorteados);
-    });
+  socket.on("resetar", () => {
+    sorteados.length = 0;
+    console.log(sorteados);
+    socket.broadcast.emit("resetados", sorteados);
+  });
 });
 
 const port = process.env.PORT || 3000;
 
 // start server
 server.listen(port || 3000, () => {
-    console.log(`Server is running on port ${port}.`);
+  console.log(`Server is running on port ${port}. Visit http://localhost:${port}`);
 });
