@@ -7,7 +7,7 @@ socket.on("sorteados", function (data) {
     $("#numero" + data)
       .removeClass("alert-primary")
       .addClass("alert-danger");
-  }, 5000);
+  }, 2000);
 });
 
 socket.on("resetados", function (data) {
