@@ -1,6 +1,7 @@
 const btIniciar = document.querySelector("#btIniciar");
 const btNext = document.querySelector("#btNext");
 const btResetar = document.querySelector("#btResetar");
+const btChamar = document.querySelector("#btChamar");
 var socket = io("https://bingodafamilia.herokuapp.com");
 let sorteados = [];
 let atual = -1;
@@ -11,40 +12,42 @@ const numbers = [...Array(60).keys()].map((i) => i + 1);
 
 // Embaralhar os numeros
 const shuffle = (array) => {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
 };
 
 // Iniciar o jogo
 btIniciar.addEventListener("click", () => {
-  sorteados = shuffle(numbers);
-  andamento = setInterval(() => {
+    sorteados = shuffle(numbers);
+});
+
+// chamar numeros
+btChamar.addEventListener("click", () => {
     atual++;
     if (atual < sorteados.length) {
-      messageObject = {
-        qtdSorteados: atual,
-        numero: sorteados[atual],
-      };
+        messageObject = {
+            qtdSorteados: atual,
+            numero: sorteados[atual],
+        };
 
-      socket.emit("sorteado", messageObject);
+        socket.emit("sorteado", messageObject);
 
-      const div = document.createElement("div");
-      div.classList.add("numero");
-      div.innerHTML = sorteados[atual];
-      document.querySelector("#resultado").appendChild(div);
+        const div = document.createElement("div");
+        div.classList.add("numero");
+        div.innerHTML = sorteados[atual];
+        document.querySelector("#resultado").appendChild(div);
     } else {
-      btNext.classList.add("hidden");
+        btNext.classList.add("hidden");
     }
-  }, 6000);
 });
 
 btResetar.addEventListener("click", () => {
-  clearInterval(andamento);
-  document.querySelector("#resultado").innerHTML = "";
-  atual = -1;
+    clearInterval(andamento);
+    document.querySelector("#resultado").innerHTML = "";
+    atual = -1;
 
-  socket.emit("resetar");
+    socket.emit("resetar");
 });
